@@ -1,0 +1,1 @@
+//= require ./internal_links/grid_page_type

@@ -1,0 +1,9 @@
+de:
+  pageflow:
+    internal_links:
+      grid:
+        page_type_name: "Seitenverweise"
+  activerecord:
+    attributes:
+      pageflow/page:
+        linked_pages_layout: "Hervorgehobenes Element"
