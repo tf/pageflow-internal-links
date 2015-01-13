@@ -34,7 +34,7 @@ module Pageflow
         end
 
         def thumbnail_link(page, hero)
-          span = template.content_tag(:span, raw(page.configuration['description']), :class => 'title')
+          span = template.content_tag(:span, template.raw(page.configuration['description']), :class => 'title')
 
           template.link_to(span,
                            "##{page.perma_id}",
