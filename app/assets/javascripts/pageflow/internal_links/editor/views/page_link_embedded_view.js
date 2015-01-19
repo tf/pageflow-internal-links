@@ -17,8 +17,8 @@ pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.exten
     'click .set': function() {
       var view = this;
 
-      pageflow.editor.selectPage().then(function(permaId) {
-        view.save(permaId);
+      pageflow.editor.selectPage().then(function(page) {
+        view.save(page.get('perma_id'));
       });
     },
 
