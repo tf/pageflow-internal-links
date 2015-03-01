@@ -42,11 +42,14 @@ pageflow.internalLinks.PageLinksCollection = Backbone.Collection.extend({
   },
 
   load: function() {
+    var idPrefix = this.configuration.page.id + ':';
+
     this.set(_(this.references()).reduce(function(result, pageId, key) {
       var page = pageflow.pages.getByPermaId(pageId);
 
       if (page) {
         result.push({
+          id: idPrefix + key,
           targetPageId: pageId,
           label: key,
           referenceKey: key
