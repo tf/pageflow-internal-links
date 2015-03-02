@@ -1,0 +1,36 @@
+en:
+  pageflow:
+    internal_links:
+      grid:
+        page_type_name: Internal Links
+        page_type_category_name: Links
+        page_type_description: A grid of thumbnails linking to other pages inside the Pageflow
+        help_entries:
+          page_type:
+            menu_item: Internal Links
+            text:  ! '# Internal Links
+
+
+            References to other pages inside a Pageflow
+
+
+            In contrast to external link, you can link to pages inside
+
+            your Pageflow. This page type helps you guide your users
+
+            through your Pageflow.
+
+
+            Examples of application: Welcome page, chapter homepage
+
+'
+  activerecord:
+    attributes:
+      pageflow/page:
+        linked_pages_layout: Hero
+    values:
+      pageflow/page:
+        linked_pages_layout:
+          default: (none)
+          hero_top_left: Top left
+          hero_top_right: Top right
