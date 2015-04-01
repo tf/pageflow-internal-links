@@ -1,0 +1,10 @@
+<li>
+  <%= link_to("#", data: {page: page.id}) do %>
+    <%= content_tag(:div, '', class: page_thumbnail_image_class(page)) %>
+
+    <div class="details">
+      <p class="title"><%= page.title %></p>
+      <p class="description"><%= raw(strip_links(page.configuration['description'])) %></p>
+    </div>
+  <% end %>
+</li>

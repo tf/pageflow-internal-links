@@ -1,4 +1,8 @@
-pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.extend({
+pageflow.internalLinks.ListItemEmbeddedView = Backbone.Marionette.ItemView.extend({
+  template: 'pageflow/internal_links/editor/templates/list_item_embedded',
+
+  tagName: 'li',
+
   modelEvents: {
     'change': 'update'
   },
@@ -9,42 +13,14 @@ pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.exten
   },
 
   events: {
-    'click .reset': function() {
-      this.setTargetPage(null);
-    },
-
-    'click .set': function() {
-      var view = this;
-
-      pageflow.editor.selectPage().then(function(page) {
-        view.setTargetPage(page.get('perma_id'));
-      });
-    },
-
-    'click .thumbnail': function () {
-      if (!this.$el.hasClass('editable')) {
-        pageflow.slides.goToById(this.targetPage().id);
-      }
-
-      return false;
-    },
-
     'mousedown': function() {
-      if (this.$el.hasClass('editable') && !this.$el.hasClass('unassigned')) {
+      if (this.$el.hasClass('editable')) {
         return false;
       }
     }
   },
 
   onRender: function() {
-    var view = this;
-
-    this.listenTo(this.model.page, 'change:' + this.options.propertyName + '_editable', function() {
-      view.updateClassName();
-      view.updateDraggable();
-      view.options.container.refreshScroller();
-    });
-
     this.update();
   },
 
@@ -61,7 +37,8 @@ pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.exten
   updateTexts: function() {
     var targetPage = this.targetPage();
 
-    this.ui.title.html(targetPage ? targetPage.configuration.get('description') : '');
+    this.ui.title.html(targetPage ? targetPage.configuration.get('title') : '');
+    this.ui.description.html(targetPage ? targetPage.configuration.get('description') : '');
   },
 
   updateThumbnailView: function() {
@@ -87,14 +64,14 @@ pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.exten
 
         this.$el.append(this.thumbnailView.el);
 
-        this.listenTo(targetPage, 'change:highlighted', this.updateClassName);
+        this.listenTo(targetPage, 'change:highlighted', this.updateClassNames);
         this.listenTo(targetPage.configuration, 'change:description', this.updateTitle);
       }
     }
   },
 
   updateClassNames: function() {
-    var editable = this.model.page.get(this.options.propertyName + '_editable');
+    var editable = this.options.page.get(this.options.propertyName + '_editable');
     var targetPage = this.targetPage();
 
     this.$el.toggleClass('title_hover', !editable);
@@ -102,5 +79,9 @@ pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.exten
     this.$el.toggleClass('empty', !targetPage && !editable);
     this.$el.toggleClass('unassigned', !targetPage);
     this.$el.toggleClass('highlighted', !!targetPage && !!targetPage.get('highlighted'));
+  },
+
+  targetPage: function() {
+    return this.model.targetPage();
   }
 });

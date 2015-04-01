@@ -21,6 +21,14 @@ de:
             Typische Anwendungsbeispiele: Willkommens-Seite, Kapitel-Startseite
 
 '
+      list:
+        page_type_name: "Seitenverweis-Liste"
+        page_type_category_name: Verweise
+        page_type_description: Sammlung von Verweisen zu anderen Seiten dieses Pageflows
+        help_entries:
+          page_type:
+            menu_item: Seitenverweise
+            text: ''
   activerecord:
     attributes:
       pageflow/page:

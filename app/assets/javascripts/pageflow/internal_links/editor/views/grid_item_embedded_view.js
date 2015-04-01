@@ -1,11 +1,12 @@
-pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.extend({
+pageflow.internalLinks.GridItemEmbeddedView = Backbone.Marionette.ItemView.extend({
+  template: 'pageflow/internal_links/editor/templates/grid_item_embedded',
+
   modelEvents: {
     'change': 'update'
   },
 
   ui: {
-    title: '.title',
-    description: '.description'
+    title: '.title'
   },
 
   events: {
@@ -36,11 +37,68 @@ pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.exten
     }
   },
 
+  initialize: function() {
+    this.pageLinks = this.model.page.pageLinks();
+  },
+
   onRender: function() {
     var view = this;
 
+    this.$el.droppable({
+      tolerance: 'pointer',
+
+      accept: function() {
+        return view.$el.hasClass('editable') && view.$el.hasClass('unassigned');
+      },
+
+      activate: function() {
+        view.$el.addClass('droppable');
+      },
+
+      deactivate: function() {
+        view.$el.removeClass('droppable over');
+      },
+
+      over: function() {
+        view.$el.addClass('over');
+      },
+
+      out: function() {
+        view.$el.removeClass('over');
+      },
+
+      drop: function(event, ui) {
+        view.$el.removeClass('droppable over');
+        view.setTargetPage(ui.draggable.data('permaId'));
+      }
+    });
+
+    this.$el.draggable({
+      disabled: true,
+
+      helper: 'clone',
+
+      revert: function(droppable) {
+        if (droppable) {
+          view.setTargetPage(null);
+        }
+
+        return !droppable;
+      },
+
+      start: function() {
+        view.$el.addClass('dragged');
+      },
+
+      stop: function() {
+        view.$el.removeClass('dragged');
+      },
+
+      revertDuration: 200
+    });
+
     this.listenTo(this.model.page, 'change:' + this.options.propertyName + '_editable', function() {
-      view.updateClassName();
+      view.updateClassNames();
       view.updateDraggable();
       view.options.container.refreshScroller();
     });
@@ -56,6 +114,7 @@ pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.exten
     this.updateTexts();
     this.updateThumbnailView();
     this.updateClassNames();
+    this.updateDraggable();
   },
 
   updateTexts: function() {
@@ -87,7 +146,7 @@ pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.exten
 
         this.$el.append(this.thumbnailView.el);
 
-        this.listenTo(targetPage, 'change:highlighted', this.updateClassName);
+        this.listenTo(targetPage, 'change:highlighted', this.updateClassNames);
         this.listenTo(targetPage.configuration, 'change:description', this.updateTitle);
       }
     }
@@ -102,5 +161,22 @@ pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.exten
     this.$el.toggleClass('empty', !targetPage && !editable);
     this.$el.toggleClass('unassigned', !targetPage);
     this.$el.toggleClass('highlighted', !!targetPage && !!targetPage.get('highlighted'));
+  },
+
+  updateDraggable: function() {
+    this.$el.draggable('option', 'disabled', !this.$el.hasClass('editable') || this.$el.hasClass('unassigned'));
+  },
+
+  setTargetPage: function(pagePermaId) {
+    this.pageLinks.addWithPosition(this.position(), pagePermaId);
+  },
+
+  targetPage: function() {
+    var pageLink = this.pageLinks.findByPosition(this.position());
+    return pageLink && pageLink.targetPage();
+  },
+
+  position: function() {
+    return this.$el.data('referenceKey');
   }
 });
