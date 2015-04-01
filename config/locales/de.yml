@@ -21,10 +21,35 @@ de:
             Typische Anwendungsbeispiele: Willkommens-Seite, Kapitel-Startseite
 
 '
+      list:
+        page_type_name: "Seitenverweis-Liste"
+        page_type_category_name: Verweise
+        page_type_description: Sammlung von Verweisen zu anderen Seiten dieses Pageflows
+        help_entries:
+          page_type:
+            menu_item: Seitenverweise
+            text: ''
+      editor:
+        templates:
+          edit_page_link:
+            back: "Zurück"
+            destroy: "Löschen"
+          embedded:
+            grid_page_link:
+              edit: "Bearbeiten"
+              set: "Zielseite auswählen"
+        views:
+          edit_page_link_view:
+            default_page_transition: "(Standard)"
+            confirm_destroy: "Verweis wirklich löschen?"
   activerecord:
     attributes:
       pageflow/page:
         linked_pages_layout: "Hervorgehobenes Element"
+      pageflow/internal_links/page_link:
+        target_page_id: "Zielseite"
+        page_transition: "Seitenübergangseffekt"
+        description: "Beschreibung"
   values:
       pageflow/page:
         linked_pages_layout:

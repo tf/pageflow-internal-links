@@ -1,27 +1,33 @@
 pageflow.internalLinks.PageLink = Backbone.Model.extend({
+  i18nKey: 'pageflow/internal_links/page_link',
+
   targetPage: function() {
-    return pageflow.pages.getByPermaId(this.get('targetPageId'));
+    return pageflow.pages.getByPermaId(this.get('target_page_id'));
   },
 
-  label: function() {
+  label: function() {},
 
+  editPath: function() {
+    return '/internal_links_pages/' + this.getRoutableId() + '/page_links/' + this.id;
   },
 
-  editPath: function() {},
+  getRoutableId: function() {
+    return this.collection.page.id;
+  },
+
+  toSerializedJSON: function() {
+    return _.omit(this.attributes, 'highlighted');
+  },
 
   highlight: function() {
-    var page = this.targetPage();
-
-    if (page) {
-      page.set('highlighted', true);
-    }
+    this.set('highlighted', true);
   },
 
   resetHighlight: function() {
-    var page = this.targetPage();
+    this.unset('highlighted');
+  },
 
-    if (page) {
-      page.unset('highlighted');
-    }
+  remove: function() {
+    this.collection.remove(this);
   }
 });

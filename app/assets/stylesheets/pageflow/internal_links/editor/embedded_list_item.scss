@@ -1,0 +1,33 @@
+.internal_links_list_page {
+  .edit {
+    @include icon-only-button(white);
+    @include pencil-icon;
+    position: absolute;
+    display: none;
+    z-index: 2;
+    top: 5px;
+    right: 15px;
+  }
+
+  nav li.editable:hover .edit {
+    display: block;
+  }
+
+  li.highlighted .page_link {
+    z-index: 0;
+    position: relative;
+    outline: solid 2px #000;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 100%;
+      height: 100%;
+      border: solid 2px #fff;
+      @include animation(blink 3s linear infinite);
+      z-index: 1;
+    }
+  }
+}

@@ -1,73 +1,87 @@
 pageflow.internalLinks.PageLinksCollection = Backbone.Collection.extend({
   model: pageflow.internalLinks.PageLink,
 
+  comparator: 'position',
+
   initialize: function(models, options) {
     this.configuration = options.configuration;
-    this.propertyName = options.propertyName;
-
-    this.listenTo(this.configuration, 'change:' + this.propertyName, function() {
-      this.load();
-    });
+    this.page = options.configuration.page;
 
     this.load();
-  },
 
-  canAddLink: function() {
-    return !!this.firstFreeReferenceKey();
+    this.listenTo(this, 'add remove change', this.save);
+    this.listenTo(this.configuration, 'change:internal_links', this.load);
   },
 
   addLink: function(targetPageId) {
-    this.save(this.firstFreeReferenceKey(), targetPageId);
+    this.addWithPosition(this.defaultPosition(), targetPageId);
+  },
+
+  canAddLink: function(targetPageId) {
+    return true;
   },
 
   updateLink: function(link, targetPageId) {
-    this.save(link.get('referenceKey'), targetPageId);
+    link.set('target_page_id', targetPageId);
   },
 
   removeLink: function(link) {
-    this.save(link.get('referenceKey'), null);
+    this.remove(link);
   },
 
-  firstFreeReferenceKey: function() {
-    var references = this.references();
+  addWithPosition: function(position, targetPageId) {
+    this.add(this.pageLinkAttributes(position, targetPageId));
+  },
 
-    return _.chain(25)
-      .times(function(index) {
-        return (index + 1).toString();
-      })
-      .find(function(referenceKey) {
-        return !references[referenceKey];
-      })
-      .value();
+  removeByPosition: function(position) {
+    this.remove(this.findByPosition(position));
+  },
+
+  findByPosition: function(position) {
+    return this.findWhere({position: position});
   },
 
   load: function() {
-    var idPrefix = this.configuration.page.id + ':';
-
-    this.set(_(this.references()).reduce(function(result, pageId, key) {
-      var page = pageflow.pages.getByPermaId(pageId);
-
-      if (page) {
-        result.push({
-          id: idPrefix + key,
-          targetPageId: pageId,
-          label: key,
-          referenceKey: key
-        });
-      }
-
-      return result;
-    }, []));
+    this.set(this.pageLinksAttributes() ||
+             this.legacyPageLinksAttributes());
   },
 
   save: function(referenceKey, pageId) {
-    var references = _(this.references()).clone();
-    references[referenceKey.toString()] = pageId;
-
-    this.configuration.set(this.propertyName, references);
+    this.configuration.set('internal_links', this.map(function(pageLink) {
+      return pageLink.toSerializedJSON();
+    }));
   },
 
-  references: function() {
-    return this.configuration.get(this.propertyName) || {};
+  pageLinksAttributes: function() {
+    return this.configuration.get('internal_links');
+  },
+
+  legacyPageLinksAttributes: function() {
+    return _(this.configuration.get('linked_page_ids') || {}).reduce(function(result, pageId, position) {
+      var page = pageflow.pages.getByPermaId(pageId);
+
+      if (page) {
+        result.push(this.pageLinkAttributes(position, pageId));
+      }
+
+      return result;
+    }, [], this);
+  },
+
+  pageLinkAttributes: function(position, targetPageId) {
+    return {
+      id: this.getUniqueId(),
+      target_page_id: targetPageId,
+      label: position,
+      position: position
+    };
+  },
+
+  getUniqueId: function() {
+    var maxId = Math.max(0, _.max(this.map(function(pageLink) {
+      return parseInt(pageLink.id.split(':').pop(), 10);
+    })));
+
+    return this.configuration.page.id + ':' + (maxId + 1);
   }
 });

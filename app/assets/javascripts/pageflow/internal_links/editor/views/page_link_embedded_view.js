@@ -1,30 +1,29 @@
 pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.extend({
-  template: 'pageflow/internal_links/editor/templates/page_link_embedded',
-
   modelEvents: {
     'change': 'update'
   },
 
   ui: {
-    title: 'span.title'
+    title: '.title',
+    description: '.description'
   },
 
   events: {
     'click .reset': function() {
-      this.save(null);
+      this.setTargetPage(null);
     },
 
     'click .set': function() {
       var view = this;
 
       pageflow.editor.selectPage().then(function(page) {
-        view.save(page.get('perma_id'));
+        view.setTargetPage(page.get('perma_id'));
       });
     },
 
     'click .thumbnail': function () {
       if (!this.$el.hasClass('editable')) {
-        pageflow.slides.goToById(this.linkedPage().id);
+        pageflow.slides.goToById(this.targetPage().id);
       }
 
       return false;
@@ -40,59 +39,6 @@ pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.exten
   onRender: function() {
     var view = this;
 
-    this.$el.droppable({
-      tolerance: 'pointer',
-
-      accept: function() {
-        return view.$el.hasClass('editable') && view.$el.hasClass('unassigned');
-      },
-
-      activate: function() {
-        view.$el.addClass('droppable');
-      },
-
-      deactivate: function() {
-        view.$el.removeClass('droppable over');
-      },
-
-      over: function() {
-        view.$el.addClass('over');
-      },
-
-      out: function() {
-        view.$el.removeClass('over');
-      },
-
-      drop: function(event, ui) {
-        view.$el.removeClass('droppable over');
-        view.save(ui.draggable.data('permaId'));
-      }
-    });
-
-    this.$el.draggable({
-      disabled: true,
-
-      helper: 'clone',
-
-      revert: function(droppable) {
-        if (droppable) {
-          view.save(null);
-        }
-
-        return !droppable;
-      },
-
-      start: function() {
-        view.$el.addClass('dragged');
-      },
-
-      stop: function() {
-        view.$el.removeClass('dragged');
-      },
-
-      revertDuration: 200
-    });
-
     this.listenTo(this.model.page, 'change:' + this.options.propertyName + '_editable', function() {
       view.updateClassName();
       view.updateDraggable();
@@ -103,82 +49,58 @@ pageflow.internalLinks.PageLinkEmbeddedView = Backbone.Marionette.ItemView.exten
   },
 
   update: function() {
-    var linkedPage = this.linkedPage();
+    var targetPage = this.targetPage();
 
-    this.$el.data('permaId', linkedPage ? linkedPage.get('perma_id') : null);
+    this.$el.data('permaId', targetPage ? targetPage.get('perma_id') : null);
 
-    this.updateTitle();
+    this.updateTexts();
     this.updateThumbnailView();
-    this.updateClassName();
-    this.updateDraggable();
+    this.updateClassNames();
   },
 
-  updateTitle: function() {
-    var linkedPage = this.linkedPage();
+  updateTexts: function() {
+    var targetPage = this.targetPage();
 
-    this.ui.title.html(linkedPage ? linkedPage.configuration.get('description') : '');
+    this.ui.title.html(targetPage ? targetPage.configuration.get('description') : '');
   },
 
   updateThumbnailView: function() {
-    var linkedPage = this.linkedPage();
+    var targetPage = this.targetPage();
 
-    if (this.currentLinkedPage !== linkedPage) {
+    if (this.currentLinkedPage !== targetPage) {
       if (this.currentLinkedPage) {
         this.stopListening(this.currentLinkedPage, 'change:highlighted');
         this.stopListening(this.currentLinkedPage.configuration, 'change:description');
       }
 
-      this.currentLinkedPage = linkedPage;
+      this.currentLinkedPage = targetPage;
 
       if (this.thumbnailView) {
         this.thumbnailView.close();
       }
 
-      if (linkedPage) {
+      if (targetPage) {
         this.thumbnailView = this.subview(new pageflow.PageThumbnailView({
-          model: linkedPage,
+          model: targetPage,
           imageUrlPropertyName: 'link_thumbnail_url'
         }));
 
         this.$el.append(this.thumbnailView.el);
 
-        this.listenTo(linkedPage, 'change:highlighted', this.updateClassName);
-        this.listenTo(linkedPage.configuration, 'change:description', this.updateTitle);
+        this.listenTo(targetPage, 'change:highlighted', this.updateClassName);
+        this.listenTo(targetPage.configuration, 'change:description', this.updateTitle);
       }
     }
   },
 
-  updateClassName: function() {
+  updateClassNames: function() {
     var editable = this.model.page.get(this.options.propertyName + '_editable');
-    var linkedPage = this.linkedPage();
+    var targetPage = this.targetPage();
 
     this.$el.toggleClass('title_hover', !editable);
     this.$el.toggleClass('editable', !!editable);
-    this.$el.toggleClass('empty', !linkedPage && !editable);
-    this.$el.toggleClass('unassigned', !linkedPage);
-    this.$el.toggleClass('highlighted', !!linkedPage && !!linkedPage.get('highlighted'));
-  },
-
-  updateDraggable: function() {
-    this.$el.draggable('option', 'disabled', !this.$el.hasClass('editable') || this.$el.hasClass('unassigned'));
-  },
-
-  save: function(pagePermaId) {
-    var references = _.clone(this.model.get(this.options.propertyName) || {});
-    references[this.keyName()] = pagePermaId;
-
-    this.model.set(this.options.propertyName, references);
-  },
-
-  linkedPage: function() {
-    return pageflow.pages.getByPermaId(this.linkedPagePermaId());
-  },
-
-  linkedPagePermaId: function() {
-    return (this.model.get(this.options.propertyName) || {})[this.keyName()];
-  },
-
-  keyName: function() {
-    return this.$el.data('referenceKey');
+    this.$el.toggleClass('empty', !targetPage && !editable);
+    this.$el.toggleClass('unassigned', !targetPage);
+    this.$el.toggleClass('highlighted', !!targetPage && !!targetPage.get('highlighted'));
   }
 });

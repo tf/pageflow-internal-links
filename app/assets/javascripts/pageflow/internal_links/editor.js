@@ -3,6 +3,8 @@
 //= require_tree ./editor/collections
 //= require_tree ./editor/templates
 //= require_tree ./editor/views
+//= require_tree ./editor/routers
+//= require_tree ./editor/controllers
 
 //= require ./editor/config
 

@@ -10,7 +10,7 @@
     pointer-events: none;
   }
 
-  .reset,
+  .edit,
   .set {
     @include icon-only-button(white);
     position: absolute;
@@ -22,8 +22,8 @@
     border: solid 1px #888;
   }
 
-  .reset {
-    @include cancel-icon;
+  .edit {
+    @include pencil-icon;
   }
 
   .set {
@@ -42,7 +42,7 @@
   &.editable {
     cursor: default;
 
-    &:hover .reset {
+    &:hover .edit {
       display: block;
     }
 
@@ -51,10 +51,12 @@
     }
 
     &.unassigned {
-      .reset {
+      .edit {
         display: none;
       }
+    }
 
+    &.no_page {
       .placeholder {
         display: block;
       }

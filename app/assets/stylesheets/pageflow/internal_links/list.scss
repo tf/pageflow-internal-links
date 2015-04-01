@@ -1,0 +1,76 @@
+@include pageflow-page-type(internal_links_list);
+
+.internal_links_list_page {
+  nav li {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin-bottom: 10px;
+    pointer-events: all;
+  }
+
+  nav .page_link {
+    display: block;
+    width: 250px;
+    max-height: 400px;
+    height: 400px;
+    margin-right: 10px;
+
+    background-color: rgb(20,20,20);
+    background-color: rgba(20,20,20, 0.8);
+    color: white;
+    vertical-align: top;
+    text-align: left;
+    text-decoration: none;
+    @include transition(0.3s);
+
+    @include phone {
+      width: 230px;
+      margin-right: 0;
+      margin-bottom: 10px;
+      height: 290px;
+      max-height: 290px;
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+  }
+
+  nav li:hover .page_link {
+    text-decoration: underline;
+    background-color: rgba(20,20,20, 1);
+    @include transform(scale(1.05));
+
+    @include phone {
+      @include transform(scale(1));
+    }
+  }
+
+  .page_thumbnail {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    padding-top: 56.25%;
+    position: relative;
+  }
+
+  .file_thumbnail {
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .details {
+    margin: 20px;
+    text-decoration: none;
+    color: #fff;
+
+    p {
+      width: 100%;
+      white-space: normal;
+      line-height: 1.3em;
+    }
+  }
+}

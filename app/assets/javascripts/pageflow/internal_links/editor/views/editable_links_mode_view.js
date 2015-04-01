@@ -1,10 +1,10 @@
 pageflow.internalLinks.EditableLinksModeView = Backbone.Marionette.View.extend({
   render: function() {
-    this.model.set('linked_page_ids_editable', true);
+    this.model.set('internal_links_editable', true);
     return this;
   },
 
   onClose: function() {
-    this.model.unset('linked_page_ids_editable');
-  },
+    this.model.unset('internal_links_editable');
+  }
 });
