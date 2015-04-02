@@ -53,7 +53,9 @@ pageflow.internalLinks.PageLinksCollection = Backbone.Collection.extend({
   },
 
   pageLinksAttributes: function() {
-    return this.configuration.get('internal_links');
+    if (this.configuration.has('internal_links')) {
+      return this.configuration.get('internal_links') || [];
+    }
   },
 
   legacyPageLinksAttributes: function() {
@@ -61,16 +63,18 @@ pageflow.internalLinks.PageLinksCollection = Backbone.Collection.extend({
       var page = pageflow.pages.getByPermaId(pageId);
 
       if (page) {
-        result.push(this.pageLinkAttributes(position, pageId));
+        result.push(this.pageLinkAttributes(parseInt(position, 10) - 1,
+                                            pageId,
+                                            this.configuration.page.id + ':' + position));
       }
 
       return result;
     }, [], this);
   },
 
-  pageLinkAttributes: function(position, targetPageId) {
+  pageLinkAttributes: function(position, targetPageId, id) {
     return {
-      id: this.getUniqueId(),
+      id: id || this.getUniqueId(),
       target_page_id: targetPageId,
       label: position,
       position: position

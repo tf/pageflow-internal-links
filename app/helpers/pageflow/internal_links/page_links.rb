@@ -20,10 +20,10 @@ module Pageflow
       private
 
       def parse
-        if configuration['internal_links']
-          parse_collection(configuration['internal_links'])
+        if configuration.key?('internal_links')
+          parse_collection(configuration['internal_links'] || [])
         else
-          parse_legacy_hash(configuration['linked_page_ids'] || [])
+          parse_legacy_hash(configuration['linked_page_ids'] || {})
         end
       end
 
@@ -37,8 +37,8 @@ module Pageflow
       end
 
       def parse_legacy_hash(hash)
-        hash.map do |target_page_id, position|
-          PageLink.new(target_page_id, position.to_i, nil, nil)
+        hash.map do |position, target_page_id|
+          PageLink.new(target_page_id, (position.to_i - 1), nil, nil)
         end
       end
     end
