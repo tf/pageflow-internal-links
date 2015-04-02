@@ -1,5 +1,8 @@
 de:
   pageflow:
+    internal_links_list:
+      page_type_feature_name: "Seitenverweis-Liste Seitentyp"
+
     internal_links:
       grid:
         page_type_name: "Seitenverweise"
@@ -29,6 +32,7 @@ de:
           page_type:
             menu_item: Seitenverweise
             text: ''
+
       editor:
         templates:
           edit_page_link:
