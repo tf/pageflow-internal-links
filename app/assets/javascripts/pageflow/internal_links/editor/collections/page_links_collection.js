@@ -76,7 +76,6 @@ pageflow.internalLinks.PageLinksCollection = Backbone.Collection.extend({
     return {
       id: id || this.getUniqueId(),
       target_page_id: targetPageId,
-      label: position,
       position: position
     };
   },

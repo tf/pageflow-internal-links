@@ -40,6 +40,7 @@ pageflow.internalLinks.EditPageLinkView = Backbone.Marionette.Layout.extend({
 
   configure: function(configurationEditor) {
     configurationEditor.tab('general', function() {
+      this.input('label', pageflow.TextInputView);
       this.input('target_page_id', pageflow.PageLinkInputView);
       this.input('page_transition', pageflow.SelectInputView, {
         translationKeyPrefix: 'pageflow.page_transitions',

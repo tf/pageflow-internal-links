@@ -5,7 +5,9 @@ pageflow.internalLinks.PageLink = Backbone.Model.extend({
     return pageflow.pages.getByPermaId(this.get('target_page_id'));
   },
 
-  label: function() {},
+  label: function() {
+    return this.get('label');
+  },
 
   editPath: function() {
     return '/internal_links_pages/' + this.getRoutableId() + '/page_links/' + this.id;

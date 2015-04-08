@@ -51,6 +51,7 @@ de:
       pageflow/page:
         linked_pages_layout: "Hervorgehobenes Element"
       pageflow/internal_links/page_link:
+        label: "Bezeichnung"
         target_page_id: "Zielseite"
         page_transition: "Seitenübergangseffekt"
         description: "Beschreibung"
