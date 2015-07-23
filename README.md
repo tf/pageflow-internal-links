@@ -13,7 +13,7 @@ Register the page types:
 
     # config/initializers/pageflow.rb
     Pageflow.configure do |config|
-      config.register_page_type(Pageflow::InternalLinks.grid_page_type)
+      config.page_types.register(Pageflow::InternalLinks.grid_page_type)
     end
 
 Include javascripts and stylesheets:
