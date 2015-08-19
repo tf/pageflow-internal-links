@@ -19,10 +19,10 @@ Register the page types:
 Include javascripts and stylesheets:
 
     # app/assets/javascripts/pageflow/application.js
-    //= require "pageflow/internal_links"
+    //= require pageflow/internal_links
 
     # app/assets/javascripts/pageflow/editor.js
-    //= require "pageflow/internal_links/editor"
+    //= require pageflow/internal_links/editor
 
     # app/assets/stylesheets/pageflow/application.css.scss
     @import "pageflow/internal_links";
