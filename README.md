@@ -7,7 +7,7 @@ Page types for linking to pages inside a Pageflow.
 Add this line to your application's Gemfile:
 
     # Gemfile
-    gem 'pagflow-internal-links'
+    gem 'pageflow-internal-links'
 
 Register the page types:
 
@@ -22,7 +22,7 @@ Include javascripts and stylesheets:
     //= require "pageflow/internal_links"
 
     # app/assets/javascripts/pageflow/editor.js
-    //= require pageflow/internal_links/editor
+    //= require "pageflow/internal_links/editor"
 
     # app/assets/stylesheets/pageflow/application.css.scss
     @import "pageflow/internal_links";
