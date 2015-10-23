@@ -1,63 +1,61 @@
 de:
+  activerecord:
+    attributes:
+      pageflow/internal_links/page_link:
+        description: Beschreibung
+        label: Bezeichnung
+        page_transition: Seitenübergangseffekt
+        target_page_id: Zielseite
+      pageflow/page:
+        linked_pages_layout: Hervorgehobenes Element
+    values:
+      pageflow/page:
+        linked_pages_layout:
+          default: (Kein)
+          hero_top_left: Links oben
+          hero_top_right: Rechts oben
   pageflow:
-    internal_links_list:
-      page_type_feature_name: "Seitenverweis-Liste Seitentyp"
-
     internal_links:
+      editor:
+        templates:
+          edit_page_link:
+            back: Zurück
+            destroy: Löschen
+          embedded:
+            grid_page_link:
+              edit: Bearbeiten
+              set: Zielseite auswählen
+        views:
+          edit_page_link_view:
+            confirm_destroy: Verweis wirklich löschen?
+            default_page_transition: (Standard)
       grid:
-        page_type_name: "Seitenverweise"
-        page_type_category_name: Verweise
-        page_type_description: Sammlung von Verweisen zu anderen Seiten dieses Pageflows
         help_entries:
           page_type:
             menu_item: Seitenverweise
             text: ! '# Seitenverweise
 
 
-            Verweise auf andere Seiten innerhalb eines Pageflows
+              Verweise auf andere Seiten innerhalb eines Pageflows
 
-            Im Gegensatz zur externen Verweis-Seite, werden hier interne Seiten innerhalb des
+              Im Gegensatz zur externen Verweis-Seite, werden hier interne Seiten innerhalb des
 
-            Pageflows verlinkt. Dies bietet sich an, um den User gezielt durch den Pageflow zu leiten.
+              Pageflows verlinkt. Dies bietet sich an, um den User gezielt durch den Pageflow zu leiten.
 
 
-            Typische Anwendungsbeispiele: Willkommens-Seite, Kapitel-Startseite
+              Typische Anwendungsbeispiele: Willkommens-Seite, Kapitel-Startseite
 
 '
-      list:
-        page_type_name: "Seitenverweis-Liste"
         page_type_category_name: Verweise
         page_type_description: Sammlung von Verweisen zu anderen Seiten dieses Pageflows
+        page_type_name: Seitenverweise
+      list:
         help_entries:
           page_type:
             menu_item: Seitenverweise
-            text: ''
-
-      editor:
-        templates:
-          edit_page_link:
-            back: "Zurück"
-            destroy: "Löschen"
-          embedded:
-            grid_page_link:
-              edit: "Bearbeiten"
-              set: "Zielseite auswählen"
-        views:
-          edit_page_link_view:
-            default_page_transition: "(Standard)"
-            confirm_destroy: "Verweis wirklich löschen?"
-  activerecord:
-    attributes:
-      pageflow/page:
-        linked_pages_layout: "Hervorgehobenes Element"
-      pageflow/internal_links/page_link:
-        label: "Bezeichnung"
-        target_page_id: "Zielseite"
-        page_transition: "Seitenübergangseffekt"
-        description: "Beschreibung"
-  values:
-      pageflow/page:
-        linked_pages_layout:
-          default: (Kein)
-          hero_top_left: Links oben
-          hero_top_right: Rechts oben
+            text: TODO
+        page_type_category_name: Verweise
+        page_type_description: Sammlung von Verweisen zu anderen Seiten dieses Pageflows
+        page_type_name: Seitenverweis-Liste
+    internal_links_list:
+      page_type_feature_name: Seitenverweis-Liste Seitentyp

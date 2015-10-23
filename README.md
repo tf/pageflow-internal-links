@@ -53,3 +53,9 @@ wiki page in the
 [Pageflow repository](https://github.com/codevise/pageflow). If that
 doesn't help, consider
 [filing an issue](https://github.com/codevise/pageflow-internal-links/issues).
+
+## Contributing Locales
+
+Edit the translations directly on the
+[pageflow-internal-links](http://www.localeapp.com/projects/public?search=tf/pageflow-internal-links)
+locale project.

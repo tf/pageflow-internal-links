@@ -1,31 +1,11 @@
 en:
-  pageflow:
-    internal_links:
-      grid:
-        page_type_name: Internal Links
-        page_type_category_name: Links
-        page_type_description: A grid of thumbnails linking to other pages inside the Pageflow
-        help_entries:
-          page_type:
-            menu_item: Internal Links
-            text:  ! '# Internal Links
-
-
-            References to other pages inside a Pageflow
-
-
-            In contrast to external link, you can link to pages inside
-
-            your Pageflow. This page type helps you guide your users
-
-            through your Pageflow.
-
-
-            Examples of application: Welcome page, chapter homepage
-
-'
   activerecord:
     attributes:
+      pageflow/internal_links/page_link:
+        description: Description
+        label: Label
+        page_transition: Page transition
+        target_page_id: Target page
       pageflow/page:
         linked_pages_layout: Hero
     values:
@@ -34,3 +14,51 @@ en:
           default: (none)
           hero_top_left: Top left
           hero_top_right: Top right
+  pageflow:
+    internal_links:
+      editor:
+        templates:
+          edit_page_link:
+            back: Back
+            destroy: Delete
+          embedded:
+            grid_page_link:
+              edit: Edit
+              set: Set
+        views:
+          edit_page_link_view:
+            confirm_destroy: Really delete this link?
+            default_page_transition: Default page transition
+      grid:
+        help_entries:
+          page_type:
+            menu_item: Internal Links
+            text: ! '# Internal Links
+
+
+              References to other pages inside a Pageflow
+
+
+              In contrast to external link, you can link to pages inside
+
+              your Pageflow. This page type helps you guide your users
+
+              through your Pageflow.
+
+
+              Examples of application: Welcome page, chapter homepage
+
+'
+        page_type_category_name: Links
+        page_type_description: A grid of thumbnails linking to other pages inside the Pageflow
+        page_type_name: Internal Links
+      list:
+        help_entries:
+          page_type:
+            menu_item: Internal Links List
+            text: TODO
+        page_type_category_name: Links
+        page_type_description: TODO
+        page_type_name: Internal Links List
+    internal_links_list:
+      page_type_feature_name: Internal Links Page Types
