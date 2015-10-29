@@ -47,15 +47,21 @@ de:
 
 '
         page_type_category_name: Verweise
-        page_type_description: Sammlung von Verweisen zu anderen Seiten dieses Pageflows
-        page_type_name: Seitenverweise
+        page_type_description: Verweise zu anderen Seiten als Mosaik angeordnet
+        page_type_name: Mosaik
       list:
         help_entries:
           page_type:
-            menu_item: Seitenverweise
-            text: TODO
+            menu_item: Multiple Choice
+            text: ! '# Multiple Choice
+
+
+              Links auf andere Seiten des Pageflows dargestellt als horizontal angeordnete Boxen mit einem kurzen Text.
+
+
+              Typische Anwendungsbeispiele: Frage/Antwort-Seite, interaktives Interview, Quiz'
         page_type_category_name: Verweise
-        page_type_description: Sammlung von Verweisen zu anderen Seiten dieses Pageflows
-        page_type_name: Seitenverweis-Liste
+        page_type_description: Verweise auf andere Seiten als Reihe von Antworten
+        page_type_name: Multiple Choice
     internal_links_list:
       page_type_feature_name: Seitenverweis-Liste Seitentyp

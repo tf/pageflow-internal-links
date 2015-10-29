@@ -51,14 +51,23 @@ en:
 '
         page_type_category_name: Links
         page_type_description: A grid of thumbnails linking to other pages inside the Pageflow
-        page_type_name: Internal Links
+        page_type_name: Internal Links Grid
       list:
         help_entries:
           page_type:
-            menu_item: Internal Links List
-            text: TODO
+            menu_item: Multiple Choice
+            text: ! '# Multiple Choice
+
+
+              A collection of links to other pages of the Pageflow displayed as a row of boxes with some text.
+
+
+              Examples of application: Question/answer page, interactive interview, quiz
+
+
+'
         page_type_category_name: Links
-        page_type_description: TODO
-        page_type_name: Internal Links List
+        page_type_description: Links to other pages as collection of answers
+        page_type_name: Multiple Choice
     internal_links_list:
       page_type_feature_name: Internal Links Page Types
