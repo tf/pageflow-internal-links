@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'pageflow-internal-links'
-  spec.version       = '0.1.0'
+  spec.version       = '0.2.0.alpha'
   spec.authors       = ['Codevise Solutions']
   spec.email         = ['info@codevise.de']
   spec.summary       = 'Pageflow page types for linking to other pages.'
