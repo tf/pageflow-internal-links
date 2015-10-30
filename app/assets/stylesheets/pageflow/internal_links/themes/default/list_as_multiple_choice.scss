@@ -1,5 +1,6 @@
 .page .internal_links_list_page {
-  $internal-links-list-main-color: $main-color-dark;
+  $internal-links-list-main-color: $main-color-dark !default;
+  $internal-links-list-item-background-color: rgba(48, 48, 48, 0.8) !default;
 
   nav {
     position: absolute;
@@ -34,7 +35,7 @@
       line-height: 30px;
       text-align: center;
       position: relative;
-      background-color: rgba(48, 48, 48, 0.8);
+      background-color: $internal-links-list-item-background-color;
       image-rendering: optimizeSpeed;
       image-rendering: -moz-crisp-edges;
       image-rendering: -o-crisp-edges;
