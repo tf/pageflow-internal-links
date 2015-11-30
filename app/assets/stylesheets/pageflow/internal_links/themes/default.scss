@@ -1,0 +1,4 @@
+@include pageflow-page-type-pictograms("internal_links_grid",
+                                       $directory: "pageflow/internal_links/themes/default/pictograms/grid");
+@include pageflow-page-type-pictograms("internal_links_list",
+                                       $directory: "pageflow/internal_links/themes/default/pictograms/list");

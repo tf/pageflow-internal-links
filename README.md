@@ -32,6 +32,13 @@ Include javascripts and stylesheets:
     # app/assets/stylesheets/pageflow/editor.css.scss
     @import "pageflow/internal_links/editor";
 
+Import the default theme additions:
+
+    # app/assets/stylesheets/pageflow/themes/default.css.scss
+
+    @import "pageflow/internal_links/themes/default";
+    @import "pageflow/internal_links/themes/default/list_as_multiple_choice";
+
 Install dependencies:
 
     bundle install
