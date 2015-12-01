@@ -32,8 +32,8 @@ en:
       grid:
         help_entries:
           page_type:
-            menu_item: Internal Links
-            text: ! '# Internal Links
+            menu_item: Internal Links Grid
+            text: ! '# Internal Links Grid
 
 
               References to other pages inside a Pageflow
@@ -46,9 +46,7 @@ en:
               through your Pageflow.
 
 
-              Examples of application: Welcome page, chapter homepage
-
-'
+              Examples of application: Welcome page, chapter homepage'
         page_type_category_name: Links
         page_type_description: A grid of thumbnails linking to other pages inside the Pageflow
         page_type_name: Internal Links Grid

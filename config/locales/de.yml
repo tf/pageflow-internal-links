@@ -32,8 +32,8 @@ de:
       grid:
         help_entries:
           page_type:
-            menu_item: Seitenverweise
-            text: ! '# Seitenverweise
+            menu_item: Mosaik
+            text: ! '# Mosaik
 
 
               Verweise auf andere Seiten innerhalb eines Pageflows
@@ -43,9 +43,7 @@ de:
               Pageflows verlinkt. Dies bietet sich an, um den User gezielt durch den Pageflow zu leiten.
 
 
-              Typische Anwendungsbeispiele: Willkommens-Seite, Kapitel-Startseite
-
-'
+              Typische Anwendungsbeispiele: Willkommens-Seite, Kapitel-Startseite'
         page_type_category_name: Verweise
         page_type_description: Verweise zu anderen Seiten als Mosaik angeordnet
         page_type_name: Mosaik
