@@ -17,7 +17,11 @@ pageflow.internalLinks.EditPageLinkView = Backbone.Marionette.Layout.extend({
 
   onRender: function() {
     var configurationEditor = new pageflow.ConfigurationEditorView({
-      model: this.model
+      model: this.model,
+      attributeTranslationKeyPrefixes: [
+        'pageflow.internal_links.page_link_attributes',
+        'pageflow.common_page_link_attributes'
+      ]
     });
 
     this.configure(configurationEditor);

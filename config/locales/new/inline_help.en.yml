@@ -1,0 +1,32 @@
+en:
+  activerecord:
+    attributes:
+      pageflow/internal_links/page_link:
+        description: DELETE
+        label: DELTE
+        page_transition: DELETE
+        target_page_id: DELETE
+      pageflow/page:
+        linked_pages_layout: DELETE
+    values:
+      pageflow/page:
+        linked_pages_layout:
+          default: DELETE
+          hero_top_left: DELETE
+          hero_top_right: DELETE
+
+  pageflow:
+    internal_links:
+      page_link_attributes:
+        description:
+          label: Description
+          inline_help: This text is displayed on the link item.
+      grid:
+        page_attributes:
+          linked_pages_layout:
+            label: Enlarged element
+            inline_help: Emphasize one of the thumbnails.
+            values:
+              default: (none)
+              hero_top_left: Top left
+              hero_top_right: Top right
