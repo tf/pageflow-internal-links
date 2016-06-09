@@ -1,19 +1,4 @@
 de:
-  activerecord:
-    attributes:
-      pageflow/internal_links/page_link:
-        description: Beschreibung
-        label: Bezeichnung
-        page_transition: Seitenübergangseffekt
-        target_page_id: Zielseite
-      pageflow/page:
-        linked_pages_layout: Hervorgehobenes Element
-    values:
-      pageflow/page:
-        linked_pages_layout:
-          default: (Kein)
-          hero_top_left: Links oben
-          hero_top_right: Rechts oben
   pageflow:
     internal_links:
       editor:
@@ -28,22 +13,27 @@ de:
         views:
           edit_page_link_view:
             confirm_destroy: Verweis wirklich löschen?
-            default_page_transition: (Standard)
+            default_page_transition: "(Standard)"
       grid:
         help_entries:
           page_type:
             menu_item: Mosaik
-            text: ! '# Mosaik
-
+            text: |-
+              # Mosaik
 
               Verweise auf andere Seiten innerhalb eines Pageflows
-
               Im Gegensatz zur externen Verweis-Seite, werden hier interne Seiten innerhalb des
-
               Pageflows verlinkt. Dies bietet sich an, um den User gezielt durch den Pageflow zu leiten.
 
-
-              Typische Anwendungsbeispiele: Willkommens-Seite, Kapitel-Startseite'
+              Typische Anwendungsbeispiele: Willkommens-Seite, Kapitel-Startseite
+        page_attributes:
+          linked_pages_layout:
+            inline_help: Ein Thumbnail im Mosaik kann größer dargestellt werden.
+            label: Hervorgehobenes Element
+            values:
+              default: "(Kein)"
+              hero_top_left: Links oben
+              hero_top_right: Rechts oben
         page_type_category_name: Verweise
         page_type_description: Verweise zu anderen Seiten als Mosaik angeordnet
         page_type_name: Mosaik
@@ -51,15 +41,18 @@ de:
         help_entries:
           page_type:
             menu_item: Multiple Choice
-            text: ! '# Multiple Choice
-
+            text: |-
+              # Multiple Choice
 
               Links auf andere Seiten des Pageflows dargestellt als horizontal angeordnete Boxen mit einem kurzen Text.
 
-
-              Typische Anwendungsbeispiele: Frage/Antwort-Seite, interaktives Interview, Quiz'
+              Typische Anwendungsbeispiele: Frage/Antwort-Seite, interaktives Interview, Quiz
         page_type_category_name: Verweise
         page_type_description: Verweise auf andere Seiten als Reihe von Antworten
         page_type_name: Multiple Choice
+      page_link_attributes:
+        description:
+          inline_help: Dieser Text wird auf dem Verweis angezeigt.
+          label: Beschreibung
     internal_links_list:
       page_type_feature_name: Multiple Choice Seitentyp

@@ -1,19 +1,4 @@
 en:
-  activerecord:
-    attributes:
-      pageflow/internal_links/page_link:
-        description: Description
-        label: Label
-        page_transition: Page transition
-        target_page_id: Target page
-      pageflow/page:
-        linked_pages_layout: Hero
-    values:
-      pageflow/page:
-        linked_pages_layout:
-          default: (none)
-          hero_top_left: Top left
-          hero_top_right: Top right
   pageflow:
     internal_links:
       editor:
@@ -33,20 +18,24 @@ en:
         help_entries:
           page_type:
             menu_item: Internal Links Grid
-            text: ! '# Internal Links Grid
-
+            text: |-
+              # Internal Links Grid
 
               References to other pages inside a Pageflow
 
-
               In contrast to external link, you can link to pages inside
-
               your Pageflow. This page type helps you guide your users
-
               through your Pageflow.
 
-
-              Examples of application: Welcome page, chapter homepage'
+              Examples of application: Welcome page, chapter homepage
+        page_attributes:
+          linked_pages_layout:
+            inline_help: Emphasize one of the thumbnails.
+            label: Enlarged element
+            values:
+              default: "(none)"
+              hero_top_left: Top left
+              hero_top_right: Top right
         page_type_category_name: Links
         page_type_description: A grid of thumbnails linking to other pages inside the Pageflow
         page_type_name: Internal Links Grid
@@ -54,18 +43,19 @@ en:
         help_entries:
           page_type:
             menu_item: Multiple Choice
-            text: ! '# Multiple Choice
-
+            text: |+
+              # Multiple Choice
 
               A collection of links to other pages of the Pageflow displayed as a row of boxes with some text.
 
-
               Examples of application: Question/answer page, interactive interview, quiz
 
-
-'
         page_type_category_name: Links
         page_type_description: Links to other pages as collection of answers
         page_type_name: Multiple Choice
+      page_link_attributes:
+        description:
+          inline_help: This text is displayed on the link item.
+          label: Description
     internal_links_list:
       page_type_feature_name: Multiple Choice Page Type
