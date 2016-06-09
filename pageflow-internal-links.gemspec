@@ -1,12 +1,15 @@
 # coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'pageflow/internal_links/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'pageflow-internal-links'
-  spec.version       = '0.2.0.alpha'
+  spec.version       = Pageflow::InternalLinks::VERSION
   spec.authors       = ['Codevise Solutions']
   spec.email         = ['info@codevise.de']
   spec.summary       = 'Pageflow page types for linking to other pages.'
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/codevise/pageflow-internal-links'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
@@ -14,5 +17,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency('pageflow', '~> 0.10.pre')
+  spec.add_runtime_dependency('pageflow', '~> 0.10')
+
+  # Semantic versioning rake tasks
+  spec.add_development_dependency 'semmy', '~> 0.2'
 end
