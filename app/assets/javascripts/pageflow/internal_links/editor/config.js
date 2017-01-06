@@ -5,11 +5,6 @@ pageflow.editor.pageTypes.register('internal_links_grid', {
     'nav li': {
       view: pageflow.internalLinks.GridItemEmbeddedView,
       options: {propertyName: 'linked_page_ids'}
-    },
-
-    '.background_image': {
-      view: pageflow.BackgroundImageEmbeddedView,
-      options: {propertyName: 'background_image_id'}
     }
   },
 
@@ -24,11 +19,6 @@ pageflow.editor.pageTypes.register('internal_links_list', {
   embeddedViews: {
     'nav': {
       view: pageflow.internalLinks.ListEmbeddedView
-    },
-
-    '.background_image': {
-      view: pageflow.BackgroundImageEmbeddedView,
-      options: {propertyName: 'background_image_id'}
     }
   },
 
