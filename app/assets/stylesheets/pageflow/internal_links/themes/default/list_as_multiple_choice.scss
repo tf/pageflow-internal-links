@@ -94,6 +94,12 @@
           }
         }
 
+        &.no_own_description {
+          .details {
+            display: none;
+          }
+        }
+
         .page_thumbnail {
           display: block;
           position: absolute;

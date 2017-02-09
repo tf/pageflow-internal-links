@@ -68,7 +68,8 @@ module Pageflow
       def css_class
         [
           'page_link',
-          custom_thumbnail_file ? 'custom_thumbnail' : 'no_custom_thumbnail'
+          custom_thumbnail_file ? 'custom_thumbnail' : 'no_custom_thumbnail',
+          optional_description.present? ? 'own_description' : 'no_own_description'
         ].compact.join(' ')
       end
 
@@ -88,7 +89,7 @@ module Pageflow
       def custom_thumbnail_file
         @custom_thumbnail_file = ImageFile.find_by_id(custom_thumbnail_image_id)
       end
-      
+
       def target_page_description
         target_page ? target_page.configuration['description'] : ''
       end
