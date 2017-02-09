@@ -73,7 +73,7 @@ pageflow.internalLinks.ListItemEmbeddedView = Backbone.Marionette.ItemView.exten
       this.ui.description.html(this.model.get('description'));
     }
     else {
-      this.ui.description.html(targetPage ? targetPage.configuration.get('description') : '');
+      this.ui.description.html(targetPage ? (targetPage.configuration.get('description') || '') : '');
     }
   },
 
@@ -102,6 +102,8 @@ pageflow.internalLinks.ListItemEmbeddedView = Backbone.Marionette.ItemView.exten
     this.$el.toggleClass('highlighted', !!this.model.get('highlighted'));
     this.ui.link.toggleClass('custom_thumbnail', !!this.model.getReference('thumbnail_image_id', pageflow.imageFiles));
     this.ui.link.toggleClass('no_custom_thumbnail', !this.model.getReference('thumbnail_image_id', pageflow.imageFiles));
+    this.ui.link.toggleClass('own_description', !!this.model.get('description'));
+    this.ui.link.toggleClass('no_own_description', !this.model.get('description'));
   },
 
   targetPage: function() {

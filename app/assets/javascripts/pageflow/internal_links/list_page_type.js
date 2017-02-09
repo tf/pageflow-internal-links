@@ -36,7 +36,12 @@ pageflow.react.registerPageTypeWithDefaultBackground('internal_links_list', {
       var thumbnail = $('.page_thumbnail', this);
       var details = $('.details', this);
 
-      thumbnail.css('bottom', details.outerHeight() + 'px');
+      if ($(this).hasClass('own_description')) {
+        thumbnail.css('bottom', details.outerHeight() + 'px');
+      }
+      else {
+        thumbnail.css('bottom', '0');
+      }
     });
   }
 });
