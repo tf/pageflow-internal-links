@@ -32,13 +32,14 @@ module Pageflow
           PageLink.new(attributes['target_page_id'],
                        attributes['position'].to_i,
                        attributes['page_transition'],
-                       attributes['description'])
+                       attributes['description'],
+                       attributes['thumbnail_image_id'])
         end.sort_by(&:position)
       end
 
       def parse_legacy_hash(hash)
         hash.map do |position, target_page_id|
-          PageLink.new(target_page_id, (position.to_i - 1), nil, nil)
+          PageLink.new(target_page_id, (position.to_i - 1), nil, nil, nil)
         end
       end
     end
@@ -46,7 +47,8 @@ module Pageflow
     class PageLink < Struct.new(:target_page_id,
                                 :position,
                                 :page_transition,
-                                :optional_description)
+                                :optional_description,
+                                :custom_thumbnail_image_id)
 
       attr_accessor :target_page
 
@@ -56,6 +58,18 @@ module Pageflow
 
       def description
         optional_description.presence || target_page_description
+      end
+
+      def thumbnail_file
+        custom_thumbnail_file ||
+          (target_page && target_page.thumbnail_file)
+      end
+
+      def css_class
+        [
+          'page_link',
+          custom_thumbnail_file ? 'custom_thumbnail' : 'no_custom_thumbnail'
+        ].compact.join(' ')
       end
 
       def data_attributes
@@ -71,6 +85,10 @@ module Pageflow
 
       private
 
+      def custom_thumbnail_file
+        @custom_thumbnail_file = ImageFile.find_by_id(custom_thumbnail_image_id)
+      end
+      
       def target_page_description
         target_page ? target_page.configuration['description'] : ''
       end

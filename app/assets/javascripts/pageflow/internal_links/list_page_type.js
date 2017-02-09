@@ -14,6 +14,14 @@ pageflow.pageType.register('internal_links_list', _.extend({
     return pageflow.preload.backgroundImage(pageElement.find('.background_image'));
   },
 
+  activated: function(pageElement) {
+    this._updateThumbnailHeights(pageElement);
+  },
+
+  resize: function(pageElement) {
+    this._updateThumbnailHeights(pageElement);
+  },
+
   update: function(pageElement, configuration) {
     pageElement.find('h2 .tagline').text(configuration.get('tagline') || '');
     pageElement.find('h2 .title').text(configuration.get('title') || '');
@@ -24,6 +32,17 @@ pageflow.pageType.register('internal_links_list', _.extend({
 
     pageElement.find('.shadow').css({
       opacity: configuration.get('gradient_opacity') / 100
+    });
+
+    this._updateThumbnailHeights(pageElement);
+  },
+
+  _updateThumbnailHeights: function(pageElement) {
+    pageElement.find('.page_link.custom_thumbnail').each(function() {
+      var thumbnail = $('.page_thumbnail', this);
+      var details = $('.details', this);
+
+      thumbnail.css('bottom', details.outerHeight() + 'px');
     });
   }
 }, pageflow.commonPageCssClasses));
