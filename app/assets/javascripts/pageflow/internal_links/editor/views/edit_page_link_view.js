@@ -43,6 +43,9 @@ pageflow.internalLinks.EditPageLinkView = Backbone.Marionette.Layout.extend({
   },
 
   configure: function(configurationEditor) {
+    var pageLink = this.model;
+    var page = pageLink.collection.page;
+
     configurationEditor.tab('general', function() {
       this.input('label', pageflow.TextInputView);
       this.input('target_page_id', pageflow.PageLinkInputView);
@@ -51,6 +54,20 @@ pageflow.internalLinks.EditPageLinkView = Backbone.Marionette.Layout.extend({
         includeBlank: true,
         blankTranslationKey: 'pageflow.internal_links.editor.views.edit_page_link_view.default_page_transition',
         values: pageflow.pageTransitions.names()
+      });
+      this.input('thumbnail_image_id', pageflow.FileInputView, {
+        collection: pageflow.imageFiles,
+        positioning: false,
+
+        fileSelectionHandler: 'internalLinks.pageLink',
+        fileSelectionHandlerOptions: {
+          pageLinkId: pageLink.id,
+        },
+
+        visibleBinding: 'id',
+        visible: function() {
+          return page.get('template') === 'internal_links_list';
+        }
       });
       this.input('description', pageflow.TextAreaInputView, {
         size: 'short'

@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    attributes:
+      pageflow/internal_links/page_link:
+        thumbnail_image_id: "Image"
+  pageflow:
+    ui:
+      inline_help:
+        pageflow/internal_links/page_link:
+          thumbnail_image_id: "Display image inside of page link box."
