@@ -1,4 +1,4 @@
-pageflow.pageType.register('internal_links_list', _.extend({
+pageflow.react.registerPageTypeWithDefaultBackground('internal_links_list', {
   prepareNextPageTimeout: 0,
 
   enhance: function(pageElement, configuration) {
@@ -10,20 +10,14 @@ pageflow.pageType.register('internal_links_list', _.extend({
     });
   },
 
-  preload: function(pageElement, configuration) {
-    return pageflow.preload.backgroundImage(pageElement.find('.background_image'));
-  },
-
   update: function(pageElement, configuration) {
     pageElement.find('h2 .tagline').text(configuration.get('tagline') || '');
     pageElement.find('h2 .title').text(configuration.get('title') || '');
     pageElement.find('h2 .subtitle').text(configuration.get('subtitle') || '');
     pageElement.find('.contentText p').html(configuration.get('text') || '');
 
-    this.updateCommonPageCssClasses(pageElement, configuration);
-
     pageElement.find('.shadow').css({
       opacity: configuration.get('gradient_opacity') / 100
     });
   }
-}, pageflow.commonPageCssClasses));
+});
