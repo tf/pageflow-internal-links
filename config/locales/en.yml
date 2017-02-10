@@ -18,16 +18,7 @@ en:
         help_entries:
           page_type:
             menu_item: Internal Links Grid
-            text: |-
-              # Internal Links Grid
-
-              References to other pages inside a Pageflow
-
-              In contrast to external link, you can link to pages inside
-              your Pageflow. This page type helps you guide your users
-              through your Pageflow.
-
-              Examples of application: Welcome page, chapter homepage
+            text: "# Internal Links Grid\n\nReferences to other pages inside a Pageflow\n\nIn contrast to external link, you can link to pages inside\nyour Pageflow. This page type helps you guide your users\nthrough your Pageflow. \n\nYou can use an image or video for the background.\n\nExamples of application: Welcome page, chapter homepage"
         page_attributes:
           linked_pages_layout:
             inline_help: Emphasize one of the thumbnails.
@@ -43,13 +34,14 @@ en:
         help_entries:
           page_type:
             menu_item: Multiple Choice
-            text: |+
+            text: |-
               # Multiple Choice
 
               A collection of links to other pages of the Pageflow displayed as a row of boxes with some text.
 
-              Examples of application: Question/answer page, interactive interview, quiz
+              You can use an image or video for the background.
 
+              Examples of application: Question/answer page, interactive interview, quiz
         page_type_category_name: Links
         page_type_description: Links to other pages as collection of answers
         page_type_name: Multiple Choice
