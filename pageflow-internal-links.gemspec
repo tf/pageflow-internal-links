@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency('pageflow', '~> 0.12.pre')
+  spec.add_runtime_dependency('pageflow', '~> 12.0.pre')
 
   # Semantic versioning rake tasks
   spec.add_development_dependency 'semmy', '~> 0.2'
