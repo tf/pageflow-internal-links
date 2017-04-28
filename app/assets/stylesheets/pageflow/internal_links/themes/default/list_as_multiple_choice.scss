@@ -2,6 +2,14 @@
   $internal-links-list-main-color: $main-color-dark !default;
   $internal-links-list-item-background-color: rgba(48, 48, 48, 0.8) !default;
 
+  .contentText {
+    margin-bottom: 250px;
+
+    @include mobile {
+      margin-bottom: 0;
+    }
+  }
+
   nav {
     position: absolute;
     bottom: 6.666%;
@@ -46,21 +54,66 @@
       -ms-interpolation-mode: nearest-neighbor;
 
       .details {
-        position: absolute;
-        top: 50%;
-        margin: 0;
-        padding: 10%;
-        width: 100%;
-        box-sizing: border-box;
-        @include transform(translate(0,-50%));
-
         p:last-of-type {
           margin: 0;
         }
       }
 
-      .page_thumbnail {
-        display: none;
+      &.no_custom_thumbnail {
+        .details {
+          position: absolute;
+          top: 50%;
+          margin: 0;
+          padding: 10%;
+          width: 100%;
+          box-sizing: border-box;
+          @include transform(translate(0,-50%));
+
+          p:last-of-type {
+            margin: 0;
+          }
+        }
+
+        .page_thumbnail {
+          display: none;
+        }
+      }
+
+      &.custom_thumbnail {
+        .details {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 7px 10px;
+          margin: 0;
+          font-size: 15px;
+
+          @media (max-width: 500px) {
+            font-size: 12px;
+          }
+        }
+
+        &.no_own_description {
+          .details {
+            display: none;
+          }
+        }
+
+        .page_thumbnail {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 35px;
+          padding: 0;
+        }
+
+        .page_thumbnail,
+        .page_thumbnail div {
+          background-position: 50% 50%;
+        }
       }
     }
     li:hover {

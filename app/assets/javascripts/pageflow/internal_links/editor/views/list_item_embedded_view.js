@@ -36,12 +36,17 @@ pageflow.internalLinks.ListItemEmbeddedView = Backbone.Marionette.ItemView.exten
   update: function() {
     var targetPage = this.targetPage();
 
-    if (!('currentTargetPage' in this) || this.currentTargetPage !== targetPage) {
+    if (!('currentTargetPage' in this) ||
+        this.currentTargetPage !== targetPage ||
+        !('currentThumbnailImageId' in this) ||
+        this.currentThumbnailImageId != this.model.get('thumbnail_image_id')) {
+
       if (this.currentTargetPage) {
         this.stopListening(this.currentTargetPage.configuration, 'change:description');
       }
 
       this.currentTargetPage = targetPage;
+      this.currentThumbnailImageId = this.model.get('thumbnail_image_id');
 
       this.ui.link.attr('data-page', targetPage ? targetPage.get('perma_id') : null);
 
@@ -68,7 +73,7 @@ pageflow.internalLinks.ListItemEmbeddedView = Backbone.Marionette.ItemView.exten
       this.ui.description.html(this.model.get('description'));
     }
     else {
-      this.ui.description.html(targetPage ? targetPage.configuration.get('description') : '');
+      this.ui.description.html(targetPage ? (targetPage.configuration.get('description') || '') : '');
     }
   },
 
@@ -80,7 +85,7 @@ pageflow.internalLinks.ListItemEmbeddedView = Backbone.Marionette.ItemView.exten
     }
 
     this.thumbnailView = this.subview(new pageflow.PageThumbnailView({
-      model: targetPage,
+      model: this.model,
       imageUrlPropertyName: 'link_thumbnail_url'
     }));
 
@@ -95,6 +100,10 @@ pageflow.internalLinks.ListItemEmbeddedView = Backbone.Marionette.ItemView.exten
     this.$el.toggleClass('empty', !targetPage && !editable);
     this.$el.toggleClass('unassigned', !targetPage);
     this.$el.toggleClass('highlighted', !!this.model.get('highlighted'));
+    this.ui.link.toggleClass('custom_thumbnail', !!this.model.getReference('thumbnail_image_id', pageflow.imageFiles));
+    this.ui.link.toggleClass('no_custom_thumbnail', !this.model.getReference('thumbnail_image_id', pageflow.imageFiles));
+    this.ui.link.toggleClass('own_description', !!this.model.get('description'));
+    this.ui.link.toggleClass('no_own_description', !this.model.get('description'));
   },
 
   targetPage: function() {

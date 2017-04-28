@@ -1,10 +1,9 @@
 <li>
-  <%= link_to("#", class: 'page_link', data: page_link.data_attributes) do %>
+  <%= link_to("#", class: page_link.css_class, data: page_link.data_attributes) do %>
     <%= content_tag(:div,
                     '',
                     class: ['page_thumbnail',
-                            page_link.target_page ? page_thumbnail_image_class(page_link.target_page, false) : nil].compact * ' ') %>
-
+                            file_thumbnail_css_class(page_link.thumbnail_file, :link_thumbnail_large)].compact * ' ') %>
     <div class="details">
       <p class="page_description">
         <%= raw(strip_links(page_link.description)) %>
