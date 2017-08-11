@@ -15,7 +15,7 @@ Register the page types:
 
     # config/initializers/pageflow.rb
     Pageflow.configure do |config|
-      config.page_types.register(Pageflow::InternalLinks.grid_page_type)
+      config.plugin(Pageflow::InternalLinks.plugin)
     end
 
 Include javascripts and stylesheets:
@@ -51,7 +51,9 @@ Migrate the database:
 
     bundle exec rake db:migrate
 
-Restart the application server.
+Restart the application server. The grid page type is available by
+default. For the list page type enable the corresponding feature in
+the tab *features*.
 
 ## Troubleshooting
 
