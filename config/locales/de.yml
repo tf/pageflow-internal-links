@@ -1,4 +1,8 @@
 de:
+  activerecord:
+    attributes:
+      pageflow/internal_links/page_link:
+        thumbnail_image_id: Bild
   pageflow:
     internal_links:
       editor:
@@ -60,3 +64,7 @@ de:
           label: Beschreibung
     internal_links_list:
       page_type_feature_name: Multiple Choice Seitentyp
+    ui:
+      inline_help:
+        pageflow/internal_links/page_link:
+          thumbnail_image_id: Ein Bild in der Verweis-Box anzeigen.

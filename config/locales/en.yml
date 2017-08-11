@@ -1,4 +1,8 @@
 en:
+  activerecord:
+    attributes:
+      pageflow/internal_links/page_link:
+        thumbnail_image_id: Image
   pageflow:
     internal_links:
       editor:
@@ -51,3 +55,7 @@ en:
           label: Description
     internal_links_list:
       page_type_feature_name: Multiple Choice Page Type
+    ui:
+      inline_help:
+        pageflow/internal_links/page_link:
+          thumbnail_image_id: Display image inside of page link box.
