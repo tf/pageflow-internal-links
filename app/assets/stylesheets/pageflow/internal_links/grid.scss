@@ -1,29 +1,5 @@
 @include pageflow-page-type(internal_links_grid);
 
-.js .page .internal_links_page .scroller > div,
-.page .internal_links_page .scroller > div
- {
-  @include pad_portrait {
-    padding: 15% 8% 5% 8%;
-  }
-}
-
-.js .page:first-child .internal_links_page .scroller > div,
-.js .page:first-child .content_and_background.internal_links_page > .page_header,
-.page:first-child .internal_links_page .scroller > div,
-.js .page:first-child .content_and_background.internal_links_page > .page_header {
-  @include pad_portrait {
-    padding: 110px 8% 5% 8%;
-  }
-}
-
-.js .page .internal_links_page {
-  .scroller > div {
-    padding: 15% 14% 5% 8%;
-    width: 100%;
-  }
-}
-
 .internal_links_page {
   nav {
     position: relative;
