@@ -47,14 +47,7 @@ pageflow.internalLinks.EditPageLinkView = Backbone.Marionette.Layout.extend({
     var page = pageLink.collection.page;
 
     configurationEditor.tab('general', function() {
-      this.input('label', pageflow.TextInputView);
-      this.input('target_page_id', pageflow.PageLinkInputView);
-      this.input('page_transition', pageflow.SelectInputView, {
-        translationKeyPrefix: 'pageflow.page_transitions',
-        includeBlank: true,
-        blankTranslationKey: 'pageflow.internal_links.editor.views.edit_page_link_view.default_page_transition',
-        values: pageflow.pageTransitions.names()
-      });
+      this.group('page_link');
       this.input('thumbnail_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
         positioning: false,

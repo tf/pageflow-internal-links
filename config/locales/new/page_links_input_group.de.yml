@@ -1,0 +1,7 @@
+de:
+  pageflow:
+    internal_links:
+      editor:
+        views:
+          edit_page_link_view:
+            default_page_transition: "DELETED"
