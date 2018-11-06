@@ -1,0 +1,35 @@
+// Typography of the title displayed in grid items
+$internal-links-grid-item-typography: () !default;
+
+// Typography of the title displayed in large grid item
+$internal-links-grid-hero-item-typography: () !default;
+
+.internal_links_page {
+  nav {
+    .title {
+      @include typography(
+        $internal-links-grid-item-typography,
+        (
+          text-transform: uppercase,
+          text-align: center,
+          line-height: 1.2em,
+          letter-spacing: 0.05em,
+          font-size: 0.8em
+        )
+      );
+    }
+
+    &[data-layout="hero_top_left"],
+    &[data-layout="hero_top_right"] {
+      .title {
+        @include typography(
+          $internal-links-grid-hero-item-typography,
+          (
+            font-size: 1em,
+            line-height: 1.4em
+          )
+        );
+      }
+    }
+  }
+}
