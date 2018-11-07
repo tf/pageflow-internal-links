@@ -1,0 +1,41 @@
+/// Color of overlay displayed when hovering a grid item
+$internal-links-grid-item-active-background-color: rgba(0, 0, 0, 0.8) !default;
+
+/// Color of text displayed when hovering a grid item
+$internal-links-grid-item-active-text-color: #fff !default;
+
+/// Color of overlay displayed when hovering a grid item on an inverted page
+$internal-links-grid-item-inverted-active-background-color: rgba(255, 255, 255, 0.8) !default;
+
+/// Color of text displayed when hovering a grid item on an inverted page
+$internal-links-grid-item-inverted-active-text-color: #000 !default;
+
+.internal_links_page {
+  nav {
+    .title {
+      color: $internal-links-grid-item-active-text-color;
+    }
+
+    .placeholder,
+    .thumbnail {
+      &:after {
+        background-color: $internal-links-grid-item-active-background-color;
+      }
+    }
+  }
+}
+
+.invert .internal_links_page {
+  nav {
+    .thumbnail,
+    .placeholder {
+      &:after {
+        background-color: $internal-links-grid-item-inverted-active-background-color;
+      }
+    }
+
+    .title {
+      color: $internal-links-grid-item-inverted-active-text-color;
+    }
+  }
+}
