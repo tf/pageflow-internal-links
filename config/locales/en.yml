@@ -17,7 +17,6 @@ en:
         views:
           edit_page_link_view:
             confirm_destroy: Really delete this link?
-            default_page_transition: Default page transition
       grid:
         help_entries:
           page_type:

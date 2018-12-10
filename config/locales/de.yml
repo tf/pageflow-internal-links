@@ -17,7 +17,6 @@ de:
         views:
           edit_page_link_view:
             confirm_destroy: Verweis wirklich löschen?
-            default_page_transition: "(Standard)"
       grid:
         help_entries:
           page_type:
